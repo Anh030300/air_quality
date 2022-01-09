@@ -12,5 +12,5 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 public class SensorData {
     private String temp;
-    private String humi;
+    private String humidity;
 }
