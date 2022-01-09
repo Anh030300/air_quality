@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AirQualityApplication {
 
     public static void main(String[] args) {
+        //GetDataThread thread = new GetDataThread();
+
         SpringApplication.run(AirQualityApplication.class, args);
+        //thread.run();
     }
 
 }
