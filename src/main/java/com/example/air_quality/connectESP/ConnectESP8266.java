@@ -1,6 +1,8 @@
 package com.example.air_quality.connectESP;
 
-import com.example.air_quality.model.SensorData;
+import com.example.air_quality.model.SensorDataEntity;
+import com.example.air_quality.service.SensorDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -11,8 +13,7 @@ import java.util.Scanner;
 @Component
 public class ConnectESP8266 {
 
-    public SensorData getData() throws IOException {
-
+    public static SensorDataEntity getData() throws IOException {
         ServerSocket serverSocket;
         Socket socket;
         Scanner input;
@@ -30,9 +31,8 @@ public class ConnectESP8266 {
         System.out.println("Humi");
         humi = msg1;
         System.out.println(msg1);
-
         socket.close();
         serverSocket.close();
-        return new SensorData(temp,humi);
+        return new SensorDataEntity(temp,humi);
     }
 }

@@ -12,7 +12,10 @@ import org.springframework.core.task.TaskExecutor;
 public class AirQualityApplication{
 
     public static void main(String[] args) {
+        //GetDataThread thread = new GetDataThread();
+
         SpringApplication.run(AirQualityApplication.class, args);
+        //thread.run();
     }
 
     @Bean
@@ -20,13 +23,3 @@ public class AirQualityApplication{
         return args -> executor.execute(new MessageListener());
     }
 }
-
-
-//@SpringBootApplication
-//public class AirQualityApplication {
-//
-//    public static void main(String[] args) {
-//        SpringApplication.run(AirQualityApplication.class, args);
-//    }
-//
-//}
