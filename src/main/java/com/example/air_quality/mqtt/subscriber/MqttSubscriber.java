@@ -144,19 +144,7 @@ public class MqttSubscriber extends MqttConfig implements MqttCallback, MqttSubs
      */
     @Override
     protected void config() {
-
-        this.brokerUrl = this.TCP + this.broker + colon + this.port;
-        this.persistence = new MemoryPersistence();
-        this.connectionOptions = new MqttConnectOptions();
-        try {
-            this.mqttClient = new MqttClient(brokerUrl, clientId, persistence);
-            this.connectionOptions.setCleanSession(true);
-            this.mqttClient.connect(this.connectionOptions);
-            this.mqttClient.setCallback(this);
-        } catch (MqttException me) {
-            me.printStackTrace();
-        }
-
+        config(this.broker,this.port,this.hasSSL,true);
     }
 
 }

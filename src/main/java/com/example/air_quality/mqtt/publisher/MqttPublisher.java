@@ -65,18 +65,7 @@ public class MqttPublisher extends MqttConfig implements MqttCallback,  MqttPubl
      */
     @Override
     protected void config() {
-
-        this.brokerUrl = this.TCP + this.broker + colon + this.port;
-        this.persistence = new MemoryPersistence();
-        this.connectionOptions = new MqttConnectOptions();
-        try {
-            this.mqttClient = new MqttClient(brokerUrl, clientId, persistence);
-            this.connectionOptions.setCleanSession(true);
-            this.mqttClient.connect(this.connectionOptions);
-            this.mqttClient.setCallback(this);
-        } catch (MqttException me) {
-            logger.error("ERROR", me);
-        }
+        config(this.broker,this.port,this.hasSSL,true);
     }
 
     /*
@@ -90,7 +79,7 @@ public class MqttPublisher extends MqttConfig implements MqttCallback,  MqttPubl
     protected void config(String broker, Integer port, Boolean ssl, Boolean withUserNamePass) {
 
         String protocal = this.TCP;
-        if (true == ssl) {
+        if (ssl) {
             protocal = this.SSL;
         }
 
@@ -101,7 +90,7 @@ public class MqttPublisher extends MqttConfig implements MqttCallback,  MqttPubl
         try {
             this.mqttClient = new MqttClient(brokerUrl, clientId, persistence);
             this.connectionOptions.setCleanSession(true);
-            if (true == withUserNamePass) {
+            if (withUserNamePass) {
                 if (password != null) {
                     this.connectionOptions.setPassword(this.password.toCharArray());
                 }

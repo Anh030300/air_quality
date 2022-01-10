@@ -4,7 +4,7 @@ public abstract class MqttConfig {
 
     protected final String broker = "3d31fa520d954a01ada2ce10fb61ce53.s2.eu.hivemq.cloud";
     protected final int qos = 2;
-    protected Boolean hasSSL = false; /* By default SSL is disabled */
+    protected Boolean hasSSL = true; /* By default SSL is enabled */
     protected Integer port = 8883; /* Default port */
     protected final String userName = "springserver";
     protected final String password = "Springserver2394";
