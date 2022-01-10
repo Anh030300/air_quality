@@ -22,14 +22,15 @@ public abstract class MqttPubSubConfig extends MqttConfig implements MqttCallbac
     public MqttPubSubConfig(){
         this.clientId ="defaultClient";
     }
+
     @Override
     protected void connect(String broker, Integer port, Boolean ssl, Boolean withUserNamePass) {
-        String protocal = this.TCP;
+        String protocol = this.TCP;
         if (ssl) {
-            protocal = this.SSL;
+            protocol = this.SSL;
         }
 
-        this.brokerUrl = protocal + this.broker + colon + port;
+        this.brokerUrl = protocol + this.broker + colon + port;
         this.persistence = new MemoryPersistence();
         this.connectionOptions = new MqttConnectOptions();
 
