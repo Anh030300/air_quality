@@ -1,13 +1,14 @@
 package com.example.air_quality.mqtt.publisher;
 
 public interface MqttPublisherBase {
+
     /**
      * Publish message
      *
-     * @param topic name of topic
-     * @param jsonMessage content
+     * @param topic
+     * @param message
      */
-    public void publishMessage(String topic, String jsonMessage);
+    public void publishMessage(String topic, String message);
 
     /**
      * Disconnect MQTT Client

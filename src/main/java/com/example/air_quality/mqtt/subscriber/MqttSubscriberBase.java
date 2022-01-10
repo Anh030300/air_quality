@@ -5,12 +5,12 @@ public interface MqttSubscriberBase {
     /**
      * Subscribe message
      *
-     * @param topic name of topic
+     * @param topic
      */
-    void subscribeMessage(String topic);
+    public void subscribeMessage(String topic);
 
     /**
      * Disconnect MQTT Client
      */
-    void disconnect();
+    public void disconnect();
 }
