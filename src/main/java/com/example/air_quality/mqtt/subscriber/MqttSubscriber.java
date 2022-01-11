@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 public class MqttSubscriber extends MqttPubSubConfig implements MqttSubscriberBase{
 
     private static final Logger logger = LoggerFactory.getLogger(MqttSubscriber.class);
+    protected String arrivedMessage;
 
     public MqttSubscriber() {
         this.clientId ="subscriber";
@@ -41,12 +42,18 @@ public class MqttSubscriber extends MqttPubSubConfig implements MqttSubscriberBa
         // Called when a message arrives from the server that matches any
         // subscription made by the client
         String time = new Timestamp(System.currentTimeMillis()).toString();
+        arrivedMessage = new String(message.getPayload());
         System.out.println();
         System.out.println("***********************************************************************");
         System.out.println("Message Arrived at Time: " + time + "  Topic: " + topic + "  Message: "
-                + new String(message.getPayload()));
+                + arrivedMessage);
         System.out.println("***********************************************************************");
         System.out.println();
+    }
+
+    @Override
+    public String getArrivedMessage() {
+        return arrivedMessage;
     }
 
     /*

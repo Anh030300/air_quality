@@ -17,7 +17,7 @@ public class ConnectESP8266 {
         ServerSocket serverSocket;
         Socket socket;
         Scanner input;
-        String msg1,temp,humi;
+        String msg1,temp,humidity;
 
         serverSocket = new ServerSocket(3000);
         socket = serverSocket.accept();
@@ -28,11 +28,11 @@ public class ConnectESP8266 {
         System.out.println(msg1);
         temp = msg1;
         msg1 = input.nextLine();
-        System.out.println("Humi");
-        humi = msg1;
+        System.out.println("Humidity");
+        humidity = msg1;
         System.out.println(msg1);
         socket.close();
         serverSocket.close();
-        return new SensorDataEntity(temp,humi);
+        return new SensorDataEntity(temp,humidity);
     }
 }

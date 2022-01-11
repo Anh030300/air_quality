@@ -13,4 +13,10 @@ public interface MqttSubscriberBase {
      * Disconnect MQTT Client
      */
     void disconnect();
+
+    /**
+     * get the received message from the subscribed topic
+     * @return received message ({@code String})
+     */
+    String getArrivedMessage();
 }

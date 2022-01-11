@@ -1,12 +1,10 @@
 package com.example.air_quality;
 
-import com.example.air_quality.mqtt.MessageListener;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.CommandLineRunner;
+import com.example.air_quality.mqtt.SensorSubscriber;
+import com.example.air_quality.service.SensorDataService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.task.TaskExecutor;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class AirQualityApplication{
@@ -14,12 +12,14 @@ public class AirQualityApplication{
     public static void main(String[] args) {
         //GetDataThread thread = new GetDataThread();
 
-        SpringApplication.run(AirQualityApplication.class, args);
+        ApplicationContext context =SpringApplication.run(AirQualityApplication.class, args);
+        SensorSubscriber sensorSubscriber = new SensorSubscriber(context.getBean(SensorDataService.class));
+        sensorSubscriber.subscribeMessage("sensor");
         //thread.run();
     }
 
-    @Bean
-    public CommandLineRunner schedulingRunner(@Qualifier("SimpleAsync") TaskExecutor executor){
-        return args -> executor.execute(new MessageListener());
-    }
+//    @Bean
+//    public CommandLineRunner schedulingRunner(@Qualifier("SimpleAsync") TaskExecutor executor){
+//        return args -> executor.execute(new MessageListener());
+//    }
 }
