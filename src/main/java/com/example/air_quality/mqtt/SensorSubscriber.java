@@ -16,16 +16,13 @@ public class SensorSubscriber extends MqttSubscriber {
 
     SensorDataService sensorDataService;
 
-    public SensorSubscriber() {
-        this.clientId ="SensorSubscriber";
-        this.connect();
-    }
-
+    @Autowired
     public SensorSubscriber(SensorDataService sensorDataService) {
         this.clientId ="SensorSubscriber";
         this.connect();
         this.sensorDataService = sensorDataService;
     }
+
     /*
      * (non-Javadoc)
             *
@@ -39,11 +36,17 @@ public class SensorSubscriber extends MqttSubscriber {
         // subscription made by the client
         String time = new Timestamp(System.currentTimeMillis()).toString();
         arrivedMessage = new String(message.getPayload());
+
+        // parse message to bson object
         JsonObject dataFromSensor = new JsonObject(arrivedMessage);
         BsonDocument bsonDocument = dataFromSensor.toBsonDocument();
+
+        //parse bson object to sensorDataEntity and save to database
         String temp = bsonDocument.get("temperature").asString().getValue();
         String humidity = bsonDocument.get("humidity").asString().getValue();
+        // TODO unsuccessful save
         sensorDataService.save(new SensorDataEntity(temp,humidity));
+
         System.out.println();
         System.out.println("***********************************************************************");
         System.out.println("Message Arrived at Time: " + time + "  Topic: " + topic + "  Message: "

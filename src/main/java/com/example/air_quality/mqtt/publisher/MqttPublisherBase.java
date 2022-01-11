@@ -7,11 +7,11 @@ public interface MqttPublisherBase {
      * @param topic name of topic
      * @param jsonMessage content
      */
-    public void publishMessage(String topic, String jsonMessage);
+    void publishMessage(String topic, String jsonMessage);
 
     /**
      * Disconnect MQTT Client
      */
-    public void disconnect();
+    void disconnect();
 
 }

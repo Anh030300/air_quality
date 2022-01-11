@@ -2,13 +2,9 @@ package com.example.air_quality.mqtt.publisher;
 
 import com.example.air_quality.mqtt.config.MqttPubSubConfig;
 import org.eclipse.paho.client.mqttv3.*;
-import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
-
-@Component
 public class MqttPublisher extends MqttPubSubConfig implements MqttPublisherBase {
 
     private static final Logger logger = LoggerFactory.getLogger(MqttPublisher.class);
