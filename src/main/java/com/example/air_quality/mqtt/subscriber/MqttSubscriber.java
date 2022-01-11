@@ -7,10 +7,10 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Timestamp;
 
-public class MqttSubscriber extends MqttPubSubConfig implements MqttSubscriberBase{
+public abstract class MqttSubscriber extends MqttPubSubConfig implements MqttSubscriberBase{
 
     private static final Logger logger = LoggerFactory.getLogger(MqttSubscriber.class);
-    protected String arrivedMessage;
+    private String arrivedMessage;
 
     public MqttSubscriber() {
         this.clientId ="subscriber";
@@ -41,6 +41,7 @@ public class MqttSubscriber extends MqttPubSubConfig implements MqttSubscriberBa
         // subscription made by the client
         String time = new Timestamp(System.currentTimeMillis()).toString();
         arrivedMessage = new String(message.getPayload());
+        handleArrivedMessage(arrivedMessage);
         System.out.println();
         System.out.println("***********************************************************************");
         System.out.println("Message Arrived at Time: " + time + "  Topic: " + topic + "  Message: "
@@ -48,6 +49,8 @@ public class MqttSubscriber extends MqttPubSubConfig implements MqttSubscriberBa
         System.out.println("***********************************************************************");
         System.out.println();
     }
+
+    protected abstract void handleArrivedMessage(String arrivedMessage);
 
     @Override
     public String getArrivedMessage() {

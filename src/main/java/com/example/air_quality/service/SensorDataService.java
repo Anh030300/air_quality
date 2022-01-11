@@ -11,18 +11,17 @@ import java.util.Date;
 public class SensorDataService extends BaseService<SensorDataEntity>{
     @Autowired
     SensorDataRepository sensorDataRepository;
-    public boolean save(SensorDataEntity sensorDataEntity)
-    {
-        if(sensorDataEntity==null)
-        {
+
+    public boolean save(SensorDataEntity sensorDataEntity) {
+        if(sensorDataEntity==null){
             return false;
         }
         sensorDataEntity.setCreatedTime(new Date());
         sensorDataRepository.save(sensorDataEntity);
         return true;
     }
-    public SensorDataEntity findTheNewest()
-    {
+
+    public SensorDataEntity findTheNewest(){
         return sensorDataRepository.findTheNewest();
     }
 }
