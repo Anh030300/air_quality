@@ -29,22 +29,24 @@ public abstract class MqttPubSubConfig extends MqttConfig implements MqttCallbac
         if (ssl) {
             protocol = this.SSL;
         }
+        logger.info("hasSSL is "+ ssl);
 
         this.brokerUrl = protocol + this.broker + colon + port;
+        logger.info("Connecting to "+this.brokerUrl);
         this.persistence = new MemoryPersistence();
         this.connectionOptions = new MqttConnectOptions();
 
         try {
             this.mqttClient = new MqttClient(brokerUrl, clientId, persistence);
             this.connectionOptions.setCleanSession(true);
-            if (withUserNamePass) {
+//            if (withUserNamePass) {
                 if (password != null) {
                     this.connectionOptions.setPassword(this.password.toCharArray());
                 }
                 if (username != null) {
                     this.connectionOptions.setUserName(this.username);
                 }
-            }
+//            }
             this.mqttClient.connect(this.connectionOptions);
             this.mqttClient.setCallback(this);
         } catch (MqttException me) {
