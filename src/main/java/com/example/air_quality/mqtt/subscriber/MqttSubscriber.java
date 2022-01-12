@@ -25,7 +25,7 @@ public abstract class MqttSubscriber extends MqttPubSubConfig implements MqttSub
      */
     @Override
     public void connectionLost(Throwable cause) {
-        logger.info("Connection Lost");
+        logger.info("Connection Lost",cause);
     }
 
     /*
@@ -105,7 +105,6 @@ public abstract class MqttSubscriber extends MqttPubSubConfig implements MqttSub
      */
     @Override
     protected void connect() {
-        logger.info("Connecting to broker:"+broker+", port:"+port+", hasSSL:"+hasSSL);
-        connect(this.broker,this.port,this.hasSSL,this.hasSSL);
+        connect(this.broker,this.port,this.hasSSL,this.withUserNamePass);
     }
 }

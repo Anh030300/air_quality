@@ -10,6 +10,7 @@ public abstract class MqttConfig {
     protected final String TCP = "tcp://";
     protected final String SSL = "ssl://";
     protected final boolean hasSSL = false;
+    protected final boolean withUserNamePass = true;
     protected final int qos = 2;
 
     protected abstract void connect(String broker, Integer port,Boolean ssl, Boolean withUserNamePass);
