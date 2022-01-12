@@ -10,8 +10,8 @@ public class App {
     String password = "Springserver2394";
     String content = "Hello World";
     int qos = 2;
-//    String broker = "tcp://broker.hivemq.com:1883";
-    String broker = "ssl://3d31fa520d954a01ada2ce10fb61ce53.s2.eu.hivemq.cloud:8883";
+    String broker = "tcp://broker.hivemq.com:1883";
+//    String broker = "ssl://3d31fa520d954a01ada2ce10fb61ce53.s2.eu.hivemq.cloud:8883";
     String clientId = "ACLIENT";
     MemoryPersistence persistence = new MemoryPersistence();
     try {
