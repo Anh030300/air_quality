@@ -22,14 +22,20 @@ public class SensorSubscriber extends MqttSubscriber {
 
     @Override
     protected void handleArrivedMessage(String arrivedMessage) {
-        JsonObject dataFromSensor = new JsonObject(arrivedMessage);
-        BsonDocument bsonDocument = dataFromSensor.toBsonDocument();
+        try {
+            JsonObject dataFromSensor = new JsonObject(arrivedMessage);
+            BsonDocument bsonDocument = dataFromSensor.toBsonDocument();
 
-        //parse bson object to sensorDataEntity and save to database
-        String temp = bsonDocument.get("temperature").asString().getValue();
-        String humidity = bsonDocument.get("humidity").asString().getValue();
-        // TODO unsuccessful save
-        sensorDataService.save(new SensorDataEntity(temp,humidity));
-        System.out.println("After Parsing: temp: "+temp+", humidity: "+humidity);
+            //parse bson object to sensorDataEntity and save to database
+            String temp = bsonDocument.get("temperature").asString().getValue();
+            String humidity = bsonDocument.get("humidity").asString().getValue();
+            // save to database
+            sensorDataService.save(new SensorDataEntity(temp,humidity));
+
+            System.out.println("After Parsing: temp: "+temp+", humidity: "+humidity);
+        } catch (Exception ignored){
+            System.out.println("Cannot parse message "+arrivedMessage);
+        }
+
     }
 }

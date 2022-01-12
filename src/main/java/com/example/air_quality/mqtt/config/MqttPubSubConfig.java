@@ -30,13 +30,13 @@ public abstract class MqttPubSubConfig extends MqttConfig implements MqttCallbac
             protocol = this.SSL;
         }
 
-        this.brokerUrl = protocol + this.broker + colon + port;
+        this.brokerUrl = protocol + this.broker + colon + port; logger.info("Connecting to "+this.brokerUrl);
         this.persistence = new MemoryPersistence();
         this.connectionOptions = new MqttConnectOptions();
 
         try {
             this.mqttClient = new MqttClient(brokerUrl, clientId, persistence);
-            this.connectionOptions.setCleanSession(true);
+            this.connectionOptions.setCleanSession(false);
             if (withUserNamePass) {
                 if (password != null) {
                     this.connectionOptions.setPassword(this.password.toCharArray());
@@ -50,6 +50,5 @@ public abstract class MqttPubSubConfig extends MqttConfig implements MqttCallbac
         } catch (MqttException me) {
             logger.error("ERROR", me);
         }
-
     }
 }

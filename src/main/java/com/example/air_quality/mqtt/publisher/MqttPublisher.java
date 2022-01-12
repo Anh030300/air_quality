@@ -54,7 +54,7 @@ public class MqttPublisher extends MqttPubSubConfig implements MqttPublisherBase
      */
     @Override
     protected void connect() {
-        connect(this.broker,this.port,this.hasSSL,this.hasSSL);
+        connect(this.broker,this.port,this.hasSSL,this.withUserNamePass);
     }
 
     /*
