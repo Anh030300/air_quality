@@ -41,9 +41,11 @@ public abstract class MqttPubSubConfig extends MqttConfig implements MqttCallbac
             this.connectionOptions.setCleanSession(true);
 //            if (withUserNamePass) {
                 if (password != null) {
+                    logger.info("password is set");
                     this.connectionOptions.setPassword(this.password.toCharArray());
                 }
                 if (username != null) {
+                    logger.info("Username is set");
                     this.connectionOptions.setUserName(this.username);
                 }
 //            }
