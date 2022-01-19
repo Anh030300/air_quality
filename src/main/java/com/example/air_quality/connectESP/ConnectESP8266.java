@@ -13,7 +13,9 @@ import java.util.Scanner;
 @Component
 public class ConnectESP8266 {
 
-    public static SensorDataEntity getData() throws IOException {
+    @Autowired
+    SensorDataService sensorDataService;
+    public void getData() throws IOException {
         ServerSocket serverSocket;
         Socket socket;
         Scanner input;
@@ -33,6 +35,7 @@ public class ConnectESP8266 {
         System.out.println(msg1);
         socket.close();
         serverSocket.close();
-        return new SensorDataEntity(temp,humidity);
+        sensorDataService.save(new SensorDataEntity(temp,humidity));
+
     }
 }

@@ -20,7 +20,8 @@ public abstract class MqttSubscriber extends MqttPubSubConfig implements MqttSub
     /*
      * (non-Javadoc)
      *
-     * @see org.eclipse.paho.client.mqttv3.MqttCallback#connectionLost(java.lang.
+     * @see org.eclipse.paho.client.
+     * mqttv3.MqttCallback#connectionLost(java.lang.
      * Throwable)
      */
     @Override

@@ -17,9 +17,21 @@ public class HomeController {
     @Autowired
     SensorDataService sensorDataService ;
     @GetMapping("/")
-    public String getClientHomePage(Model model) throws IOException {
-        //model.addAttribute("data", sensorDataService.findTheNewest());
-        model.addAttribute("data",ConnectESP8266.getData() );
+    public String getHomePage(Model model) throws IOException {
+        model.addAttribute("data",sensorDataService.findTheNewest() );
+
         return "homepage";
+    }
+    @GetMapping("/newest")
+    public String getNewestData(Model model) throws IOException {
+        model.addAttribute("data",sensorDataService.findTheNewest() );
+
+        return "newest_data";
+    }
+    @GetMapping("/all")
+    public String getAllData(Model model) throws IOException {
+        model.addAttribute("list_data",sensorDataService.findAll() );
+
+        return "all_data";
     }
 }

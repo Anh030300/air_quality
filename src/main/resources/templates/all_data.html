@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th> Thời gian </th>
+        <th> Nhiệt độ </th>
+        <th> Độ ẩm </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="data : ${list_data}">
+        <td><span th:text="${data.getCreatedTime()}">  Thời gian </span></td>
+        <td><span th:text="${data.getTemp()}"> Nhiệt độ </span></td>
+        <td><span th:text="${data.getHumidity()}"> Độ ẩm </span></td>
+    </tr>
+    <tr th:if="${list_data.empty}">
+        <td colspan="2"> No data </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
