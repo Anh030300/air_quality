@@ -1,6 +1,5 @@
 package com.example.air_quality.controller;
 
-import com.example.air_quality.connectESP.ConnectESP8266;
 import com.example.air_quality.model.SensorDataEntity;
 import com.example.air_quality.service.SensorDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -18,20 +19,35 @@ public class HomeController {
     SensorDataService sensorDataService ;
     @GetMapping("/")
     public String getHomePage(Model model) throws IOException {
-        model.addAttribute("data",sensorDataService.findTheNewest() );
-
-        return "homepage";
+        return "home";
     }
-    @GetMapping("/newest")
+    @GetMapping("/charts")
     public String getNewestData(Model model) throws IOException {
-        model.addAttribute("data",sensorDataService.findTheNewest() );
+        List<String> tempList = new ArrayList<>();
+        List<String> humiList = new ArrayList<>();
+        List<String> dateList = new ArrayList<>();
+        List<SensorDataEntity> sensorDataEntities=sensorDataService.findTop10();
+        for(int i = sensorDataEntities.size()-1; i >=0;i--)
+        {
+            tempList.add(sensorDataEntities.get(i).getTemp());
+            humiList.add(sensorDataEntities.get(i).getHumidity());
+       //     dateList.add(sensorDataEntities.get(i).convertDate());
+            dateList.add("1");
+        }
+        model.addAttribute("top10temp",tempList);
+        model.addAttribute("top10humi",humiList);
+        model.addAttribute("top10date",dateList);
 
-        return "newest_data";
+        return "charts";
     }
     @GetMapping("/all")
     public String getAllData(Model model) throws IOException {
         model.addAttribute("list_data",sensorDataService.findAll() );
 
         return "all_data";
+    }
+    @GetMapping("/mock_data")
+    public String members(Model model) throws IOException {
+        return "mock_data";
     }
 }

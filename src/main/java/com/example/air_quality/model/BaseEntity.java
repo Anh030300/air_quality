@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @MappedSuperclass
@@ -20,4 +21,11 @@ public abstract class BaseEntity {
     private Long id;
 
     private Date createdTime;
+
+    public String convertDate()
+    {
+        String pattern = "dd-MM-yyyy hh:mm:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(createdTime);
+    }
 }

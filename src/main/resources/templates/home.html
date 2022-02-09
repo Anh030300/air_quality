@@ -1,21 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Data </title>
+    <title> Home Page </title>
        
         <!--  Bootstrap css file  -->
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="./css/bootstrap.min.css">   
+        <!--  custom css file  -->
     <link rel="stylesheet" href="./css/style.css">
         <!--  Responsive css file  -->
     <link rel="stylesheet" href="./css/responsive.css">
-        <!-- Table css-->
-    <link rel="stylesheet" href="./css/table.css">    
-    
-    
     
 </head>
 <!-- Header -->
@@ -47,54 +43,30 @@
             </nav>
         </div>
     </header>
-    <!--  ========================= About Area ==========================  -->
+    <!--End Header -->
 
-    <section class="about-area">
-        <div class="container-fluid">
+    <!--  Start Banner Area   -->
+    <section class="site-banner">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-12">
-                    <div class="about-image">
-                        <img src="./img/about-us.png" alt="About us" class="img-fluid">
+                <div class="col-lg-6 col-md-12 site-title">
+                    <h3 class="title-text">Hey</h3>
+                    <h1 class="title-text text-uppercase">We are Group 7</h1>
+                    <h4 class="title-text text-uppercase">Display air quality information</h4>
+                    <div class="site-buttons">
+                        <div class="d-flex flex-row flex-wrap">
+                            <button type="button" class="btn button primary-button mr-4 text-uppercase">Detail</button>
+                            <button id="demo" type="button" class="btn button secondary-button text-uppercase" onclick="myFunction()">Chart</button>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12 about-title">
-                    <h2 class="text-uppercase pt-5">
-                        <span>Let 's</span>
-                        <span>get</span>
-                        <span>data</span>
-                    </h2>
-                    <div class="paragraph py-4 w-75">
-                        <p class="para">
-                            Humidity and temperature are updated every 5s from the sensor device. Refer to the table below
-                        </p>           
-                    </div>
-                    
+                <div class="col-lg-6 col-md-12 banner-image">
+                    <img src="./img/banner/banner-image.png" alt="banner-img" class="img-fluid">
                 </div>
             </div>
         </div>
     </section>
-
-    <!--  ========================= End About Area ==========================  -->
-
-
-
-    <!-- All Data -->
-    <table>
-        <tr>
-            <th>Date time</th>
-            <th>Temperature</th>
-            <th>Huminity</th>
-        </tr>
-        <tr th:each="data : ${list_data}">
-            <td><span th:text="${data.convertDate()}">  Thời gian </span></td>
-            <td><span th:text="${data.getTemp()}"> Nhiệt độ </span></td>
-            <td><span th:text="${data.getHumidity()}"> Độ ẩm </span></td>
-        </tr>
-        <tr th:if="${list_data.empty}">
-            <td colspan="2"> No data </td>
-        </tr>
-      </table>
-    <!-- End Data-->
+    <!--  End Banner Area -->
     <!--  ======================= End Main Area ================================ -->
 
     <footer class="footer-area">
@@ -119,5 +91,6 @@
             </div>
         </div>
     </footer>
+
 </body>
 </html>

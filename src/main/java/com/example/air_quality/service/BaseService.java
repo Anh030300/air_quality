@@ -4,6 +4,8 @@ import com.example.air_quality.model.BaseEntity;
 import com.example.air_quality.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public abstract class BaseService<T extends BaseEntity> {
@@ -23,4 +25,5 @@ public abstract class BaseService<T extends BaseEntity> {
         baseRepository.save(t);
         return true;
     }
+
 }

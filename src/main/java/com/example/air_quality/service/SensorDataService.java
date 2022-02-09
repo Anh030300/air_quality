@@ -22,7 +22,7 @@ public class SensorDataService extends BaseService<SensorDataEntity>{
         return true;
     }
 
-    public SensorDataEntity findTheNewest(){
-        return sensorDataRepository.findTheNewest();
+    public List<SensorDataEntity> findTop10(){
+        return sensorDataRepository.findTop10ByOrderByCreatedTimeAsc();
     }
 }

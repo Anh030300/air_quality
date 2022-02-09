@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.ParseException;
 import java.util.Scanner;
 
 @Component
@@ -15,7 +16,7 @@ public class ConnectESP8266 {
 
     @Autowired
     SensorDataService sensorDataService;
-    public void getData() throws IOException {
+    public void getData() throws IOException, ParseException {
         ServerSocket serverSocket;
         Socket socket;
         Scanner input;
@@ -35,7 +36,7 @@ public class ConnectESP8266 {
         System.out.println(msg1);
         socket.close();
         serverSocket.close();
-        sensorDataService.save(new SensorDataEntity(temp,humidity));
+        //sensorDataService.save(new SensorDataEntity(temp,humidity));
 
     }
 }
