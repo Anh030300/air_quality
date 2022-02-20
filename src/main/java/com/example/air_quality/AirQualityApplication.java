@@ -9,12 +9,9 @@ import org.springframework.context.ApplicationContext;
 public class AirQualityApplication{
 
     public static void main(String[] args) {
-        //GetDataThread thread = new GetDataThread();
-
         ApplicationContext context =SpringApplication.run(AirQualityApplication.class, args);
         SensorSubscriber sensorSubscriber = context.getBean(SensorSubscriber.class);
         sensorSubscriber.subscribeMessage("sensor");
-        //thread.run();
     }
 
 }

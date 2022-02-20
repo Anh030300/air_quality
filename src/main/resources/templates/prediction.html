@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Members </title>
+    <title> Prediction </title>
        
         <!--  Bootstrap css file  -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="./css/style.css">
         <!--  Responsive css file  -->
     <link rel="stylesheet" href="./css/responsive.css">
-    
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <!-- Header -->
 <body>
@@ -38,13 +39,30 @@
                             <a class="nav-link" href="/charts">Chart</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/mock_data">Members</a>
+                            <a class="nav-link" href="/prediction">Prediction</a>
                     </ul>
                 </div>
             </nav>
         </div>
     </header>
-
+    <div class="row">
+        <div class="col-lg-12 text-center ">
+            <h1 class="text-uppercase title-text">Prediction</h1>
+            <p class="para">
+                We predict temperature and humidity for the next 30 minutes
+            </p>
+            <p class="predic">
+            </p>
+        </div>
+    </div>
+    <script>
+        const url = 'http://4783-34-73-182-153.ngrok.io/singlestep';
+        $.getJSON(url, function(data) {
+            var text = `Temperature: ${data.predictions[0].temperature}<br>
+                    Humidity: ${data.predictions[0].humidity}`
+            $(".predic").html(text);
+        });
+    </script>
     <!--  ======================= End Main Area ================================ -->
 
     <footer class="footer-area">

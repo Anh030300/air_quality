@@ -39,12 +39,23 @@
                         <a class="nav-link" href="/charts">Chart</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/mock_data">Members</a>
+                        <a class="nav-link" href="/prediction">Prediction</a>
                 </ul>
             </div>
         </nav>
     </div>
 </header>
+<div class="row">
+    <div class="col-lg-12 text-center ">
+        <h1 class="text-uppercase title-text">Now</h1>
+        <p class="para">
+            Temperature <span th:text="${top10temp[9]}"> </span> C°
+        </p>
+        <p class="para">
+            Huminity <span th:text="${top10humi[9]}"></span> %
+        </p>
+    </div>
+</div>
 <div class="row">
     <div class="col-lg-12 text-center ">
         <h1 class="text-uppercase title-text">Charts</h1>
@@ -132,7 +143,6 @@
             </script>
         </div>
     </div>
-
 
     <!--  ======================= End Main Area ================================ -->
 
