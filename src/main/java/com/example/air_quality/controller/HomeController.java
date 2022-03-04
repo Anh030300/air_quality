@@ -3,6 +3,7 @@ package com.example.air_quality.controller;
 import com.example.air_quality.model.SensorDataEntity;
 import com.example.air_quality.service.SensorDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,8 +33,9 @@ public class HomeController {
         {
             tempList.add(sensorDataEntities.get(i).getTemp());
             humiList.add(sensorDataEntities.get(i).getHumidity());
-       //     dateList.add(sensorDataEntities.get(i).convertDate());
-            dateList.add("1");
+            dateList.add(sensorDataEntities.get(i).convertDate2());
+            System.out.println(sensorDataEntities.get(i).convertDate2());
+            //dateList.add("1");
         }
         model.addAttribute("top10temp",tempList);
         model.addAttribute("top10humi",humiList);
@@ -51,4 +53,6 @@ public class HomeController {
     public String members(Model model) throws IOException {
         return "prediction";
     }
+
+
 }

@@ -24,7 +24,13 @@ public abstract class BaseEntity {
 
     public String convertDate()
     {
-        String pattern = "dd-MM-yyyy hh:mm:ss";
+        String pattern = "yyyy-MM-dd hh:mm:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(createdTime);
+    }
+    public String convertDate2()
+    {
+        String pattern = "mm";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(createdTime);
     }
