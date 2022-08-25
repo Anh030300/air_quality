@@ -17,5 +17,4 @@ import javax.persistence.Table;
 public class SensorDataEntity extends BaseEntity {
     private String temp;
     private String humidity;
-
 }
